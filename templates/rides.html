@@ -1,0 +1,23 @@
+{% extends "base.html "%}
+
+{% block content %}
+
+<h2>Upcumming Rides</h2>
+
+{% for ride in rides %}
+    <div style="border:1px solid yellow; padding:15px; margin-bottom:15px;">
+        <h3>
+            <a href="{{ url_for('ride_detail', ride_id=ride.id) }}">{{ ride.title }} </a>
+        </h3>
+        <p><strong>Location</strong> {{ ride.location }}</p>
+        <p><strong>Date</strong>{{ ride.ride_date }}</p>
+        <p>{{ ride.descrition }}</p>
+    </div>
+
+{% else %}
+    <p>No Rides Sceduled </p>
+    
+{% endfor %}
+
+
+{% endblock %}

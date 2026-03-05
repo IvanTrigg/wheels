@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Wheels in the Sky</title>
+</head>
+
+<body>
+
+<header>
+    <div class="nav-container">
+        <nav>
+            <!-- <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('rides') }}">Rides</a>
+            <a href="{{ url_for('contacts') }}">Contacts</a> -->
+
+            {% if current_user.is_authenticated %}
+                <span class="welcome">Welcome {{ current_user.username }}</span><br><br>
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('rides') }}">Rides</a>
+                <a href="{{ url_for('contacts') }}">Contacts</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+
+                {% if current_user.role == "senior" %}
+                    <a href="{{ url_for('approve_members') }}">Approve Members</a>
+                    <a href="{{ url_for('create_ride') }}">Create Ride</a>
+                {% endif %}
+
+            {% else %}
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('rides') }}">Rides</a>
+                <a href="{{ url_for('contacts') }}">Contacts</a>
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+
+
+        </nav>
+
+        <div class="logo">
+            <h1>WFFW</h1>
+        </div>
+    </div>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <p>© 2026 Romat Dev</p>
+</footer>
+
+</body>
+</html>

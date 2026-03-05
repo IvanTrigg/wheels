@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ ride.detail }}</h2>
+
+<p><strong>Location:</strong>{{ ride.location }}</p>
+<p><strong>Date:</strong>{{ ride.ride_date }}</p>
+<p>{{ ride.description }}</p>
+
+<hr>
+
+{% if current_user.is_authenticated %}
+
+    <h3>Join This Ride</h3>
+
+    <form method="POST">
+        {% for point in meeting_points %}
+            <input type="radio"
+                   name="meeting_point"
+                   value="{{ point.location_name }}"
+                   {% if participant and participant.meeting_point == point.location_name %}
+                        checked
+                    {% endif %}
+                    required>
+            {{ point.location_name}}
+            <br>
+        {% endfor %}
+
+        <br>
+        <button type="submit">
+            {% if participant %}
+                Update Meeting Point
+            {% else %}
+                Join Ride
+            {% endif %}
+        </button>
+    </form>
+
+    <br>
+
+    {% if current_user.is_authenticated and current_user.role == "senior" %}
+    <form method="POST"
+          action="{{ url_for('delete_ride', ride_id=ride.id) }}"
+          onsubmit="return confirm('Are you sure you want to delete this ride?');">
+        <button type="submit" style="background-color:red; color:white;">
+            Delete Ride
+        </button>
+    </form>
+{% endif %}
+
+{% else %}
+    <p><a href="{{ url_for('login')}}">Login</a> to join this ride.</p>
+{% endif %}
+
+
+
+<hr>
+
+{% if current_user.is_authenticated %}
+    <h3>Confirmed Riders</h3>
+
+    <ul>
+        {% for rider in ride_participants %}
+            <li>{{ rider.username }} - {{rider.meeting_point }}</li>
+        {% else %}
+            <p>No riders have confirmed yet.</p>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

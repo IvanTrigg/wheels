@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Manage Meeting Points</h2>
+
+<h3>{{ ride.title }}</h3>
+
+<form method="POST">
+    <input type="text" name="location_name" placeholder="New Meeting Point" required>
+    <button type="submit">Add Meeting Point</button>
+</form>
+
+<hr>
+
+<h4>Existing Meeting Pont</h4>
+
+<ul>
+    {% for point in meeting_points %}
+        <li>{{ point.location_name }}</li>
+    {% else %}
+        <p>No Meeting Points Added Yet.</p>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('rides') }}">Back to Rides</a>
+
+
+{% endblock %}
