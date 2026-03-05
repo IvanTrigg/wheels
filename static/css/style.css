@@ -16,27 +16,73 @@ header {
     padding-right: 20px;
 }
 
-nav {
-    display: flex;
-    align-items: center;
+/* NavBar */
 
-}
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav a {
-    color: yellow;
-    margin-right: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 25px;
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:black;
+    padding:15px 30px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.navbar a{
+    color:yellow;
+    text-decoration:none;
+    margin-right:20px;
+    font-weight:bold;
+}
+
+.navbar a:hover{
+    color:white;
+}
+
+.nav-right{
+    position:relative;
+}
+
+/* Dropdown button */
+
+.dropbtn{
+    background:black;
+    color:yellow;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* Dropdown container */
+
+.dropdown{
+    position:relative;
+    display:inline-block;
+}
+
+/* Dropdown menu */
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    right:0;
+    background:#111;
+    min-width:180px;
+    box-shadow:0px 4px 8px rgba(0,0,0,0.5);
+}
+
+.dropdown-content a{
+    display:block;
+    padding:10px;
+    color:yellow;
+}
+
+.dropdown-content a:hover{
+    background:black;
+}
+
+/* Show dropdown */
+
+.dropdown:hover .dropdown-content{
+    display:block;
 }
 
 .logo {

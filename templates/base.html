@@ -10,42 +10,49 @@
 <body>
 
 <header>
-    <div class="nav-container">
-        <nav>
-            <!-- <a href="{{ url_for('index') }}">Home</a>
+    <!-- <div class="nav-container"> -->
+    <nav class="navbar">
+            
+        <div class="nav-left">
+            <a href="{{ url_for('index') }}">Home</a>
             <a href="{{ url_for('about') }}">About</a>
             <a href="{{ url_for('rides') }}">Rides</a>
-            <a href="{{ url_for('contacts') }}">Contacts</a> -->
+            <a href="{{ url_for('contacts') }}">Contacts</a>
+        </div>
+
+        <div class="nav-right">
 
             {% if current_user.is_authenticated %}
-                <span class="welcome">Welcome {{ current_user.username }}</span><br><br>
-                <a href="{{ url_for('index') }}">Home</a>
-                <a href="{{ url_for('about') }}">About</a>
-                <a href="{{ url_for('rides') }}">Rides</a>
-                <a href="{{ url_for('contacts') }}">Contacts</a>
-                <a href="{{ url_for('logout') }}">Logout</a>
 
-                {% if current_user.role == "senior" %}
-                    <a href="{{ url_for('approve_members') }}">Approve Members</a>
-                    <a href="{{ url_for('create_ride') }}">Create Ride</a>
-                {% endif %}
+            <div class="dropdown">
+                <button class="dropbtn">
+                    {{ current_user.username }} ▼
+                </button>
+
+                <div class="dropdown-content">
+
+                    {% if current_user.role == "senior" %}
+                        <a href="{{ url_for('create_ride') }}">Create Ride</a>
+                        <a href="{{ url_for('approve_members') }}">Approve Members</a>
+                        <hr>
+                    {% endif %}
+
+                    <a href="{{ url_for('logout') }}">Logout</a>
+
+                </div>
+            </div>
 
             {% else %}
-                <a href="{{ url_for('index') }}">Home</a>
-                <a href="{{ url_for('about') }}">About</a>
-                <a href="{{ url_for('rides') }}">Rides</a>
-                <a href="{{ url_for('contacts') }}">Contacts</a>
+
                 <a href="{{ url_for('login') }}">Login</a>
                 <a href="{{ url_for('register') }}">Register</a>
+
             {% endif %}
-
-
-        </nav>
-
-        <div class="logo">
-            <h1>WFFW</h1>
         </div>
-    </div>
+
+
+    </nav>
+       
 </header>
 
 <main>
