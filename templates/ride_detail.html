@@ -60,7 +60,7 @@
 {% if current_user.is_authenticated %}
     <h3>Confirmed Riders</h3>
 
-    <ul>
+    <ul class="confirmed-riders">
         {% for rider in ride_participants %}
             <li>{{ rider.username }} - {{rider.meeting_point }}</li>
         {% else %}

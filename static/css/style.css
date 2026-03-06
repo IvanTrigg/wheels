@@ -126,3 +126,9 @@ button:hover {
     background-color: #ffcc00;
 }
 
+/* Rides */
+
+.confirmed-riders li {
+    list-style-type: none;
+}
+
