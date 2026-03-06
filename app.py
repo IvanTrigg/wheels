@@ -27,6 +27,7 @@ class User(UserMixin, db.Model):
     role = db.Column(db.String(20), default='member')
     approved = db.Column(db.Boolean, default=False)
     is_senior = db.Column(db.Boolean, default=False)
+    # chapter = db.Column(db.String(150), nullable=True)
 
 class Ride(db.Model):
     id = db.Column(db.Integer, primary_key=True)
