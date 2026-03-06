@@ -27,7 +27,7 @@ class User(UserMixin, db.Model):
     role = db.Column(db.String(20), default='member')
     approved = db.Column(db.Boolean, default=False)
     is_senior = db.Column(db.Boolean, default=False)
-    # chapter = db.Column(db.String(150), nullable=True)
+    chapter = db.Column(db.String(50))
 
 class Ride(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -100,6 +100,7 @@ def register():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
+        chapter  = request.form.get("chapter")
 
         if not username or not password:
             flash("Please fill in all fields.")
@@ -109,7 +110,10 @@ def register():
 
         new_user = User(
             username=username,
-            password=hashed_password
+            password=hashed_password,
+            role="member",
+            approved=False,
+            chapter=chapter
         )
 
         db.session.add(new_user)

@@ -8,7 +8,7 @@
     <ul>
     {% for user in users %}
         <li>
-            {{ user.username }}
+            {{ user.username}} - {{ user.chapter }}
             <a href="{{ url_for('approve_user', user_id=user.id) }}">Approve</a>
         </li>
     {% endfor %}
