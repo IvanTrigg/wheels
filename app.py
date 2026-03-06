@@ -156,27 +156,27 @@ def logout():
 
 # --- Create First Admin ---
 
-@app.route('/create-first-admin')
-def create_first_admin():
-    senior_exists = User.query.filter_by(role='senior').first()
+# @app.route('/create-first-admin')
+# def create_first_admin():
+#     senior_exists = User.query.filter_by(role='senior').first()
 
-    if senior_exists:
-        return 'Admin already exists!'
+#     if senior_exists:
+#         return 'Admin already exists!'
     
-    username = 'admin'
-    password = generate_password_hash('admin')
+#     username = 'admin'
+#     password = generate_password_hash('admin')
 
-    admin = User(
-        username=username,
-        password=password,
-        role='senior',
-        approved=True
-    )
+#     admin = User(
+#         username=username,
+#         password=password,
+#         role='senior',
+#         approved=True
+#     )
 
-    db.session.add(admin)
-    db.session.commit()
+#     db.session.add(admin)
+#     db.session.commit()
 
-    return 'Frist admin created. Username: admin | Password: wheels2026'
+#     return 'Frist admin created. Username: admin | Password: wheels2026'
 
 # --- Members Approval ---
 
