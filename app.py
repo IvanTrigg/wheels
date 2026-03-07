@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'supersecret'
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database.db"
+app.config["PROPAGATE_EXCEPTIONS"] = True
 
 # --- DB Setup --- 
 
@@ -89,8 +90,15 @@ def contacts():
 
 @app.route('/rides')
 def rides():
-    rides = Ride.query.order_by(Ride.id.desc()).all()
-    return render_template('rides.html', rides=rides)
+    try:
+        rides = Ride.query.all()
+        print("RIDES LOADED:", rides)
+        return render_template("rides.html", rides=rides)
+    except Exception as e:
+        print("RIDES ERROR:", e)
+        return "Error loading rides"
+    # rides = Ride.query.order_by(Ride.id.desc()).all()
+    # return render_template('rides.html', rides=rides)
 
 
 # --- Register ---
