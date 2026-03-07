@@ -332,6 +332,14 @@ def delete_ride(ride_id):
 
     return redirect(url_for('rides'))
 
+@app.route("/db-test")
+def db_test():
+    try:
+        rides = Ride.query.all()
+        return f"Database working. {len(rides)} rides found."
+    except Exception as e:
+        return str(e)
+
 # --- Run App ---   
 
 if __name__ == '__main__':
