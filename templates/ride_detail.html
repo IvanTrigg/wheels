@@ -15,16 +15,19 @@
     <h3>Join This Ride</h3>
 
     <form method="POST">
+        
         {% for point in meeting_points %}
-            <input type="radio"
-                   name="meeting_point"
-                   value="{{ point.location_name }}"
-                   {% if participant and participant.meeting_point == point.location_name %}
-                        checked
-                    {% endif %}
-                    required>
-            {{ point.location_name}}
-            <br>
+        <label class="meeting-option">    
+                <input type="radio"
+                       name="meeting_point"
+                       value="{{ point.location_name }}"
+                       {% if participant and participant.meeting_point == point.location_name %}
+                            checked
+                        {% endif %}
+                        required>
+                {{ point.location_name}}
+                <br>
+        </label>
         {% endfor %}
 
         <br>

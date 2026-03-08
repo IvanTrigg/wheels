@@ -114,6 +114,13 @@ input {
     color: white;
 }
 
+.meeting-option {
+    al: center;
+    display: flex;
+    margin-bottom: 10px;
+    
+}
+
 button {
     padding: 8px;
     background-color: yellow;
@@ -136,3 +143,18 @@ button:hover {
     list-style-type: none;
 }
 
+/* resize for phone */
+
+@media only screen and (max-width: 600px) {
+    .main-img {
+        width: 80%
+    }
+
+    .hero {
+        font-size: 16px;
+    }
+
+    html {
+        font-size: 10px;
+    }
+}
